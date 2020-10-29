@@ -46,7 +46,7 @@ if __name__ == "__main__":
         sys.exit("Please provide a path to data files as argument.")
 
     path = Path(sys.argv[1])
-    
+
     # Read in all the files and compute probability distributions
     langs = {}
     for filename in path.glob("Alice_*"):
