@@ -76,3 +76,48 @@ if __name__ == "__main__":
     # Print results
     for k, v in results.items():
         print(k, v, sep="\t")
+
+    # --- PROBLEM 4b ---
+    print("---Problem 4b---")
+    col_probs = {}
+    for lang, P in langs.items():
+        col_probs[lang] = col_prob(P)
+
+    # sort results (ascending)
+    col_probs = {
+        k: v for k, v in sorted(col_probs.items(), key=lambda x: x[1], reverse=False)
+    }
+    print("Listing Collision probabilities for each language")
+    for k, v in col_probs.items():
+        print(k, v, sep="\t")
+
+    # --- PROBLEM 4d ---
+    print("---Problem 4d---")
+
+    # Compute cipher distribution
+    cipherfile = path.joinpath('permuted_cipher.txt')
+    with open(cipherfile) as file:
+        ciphertext = file.read().lower()
+        cipher_P = compute_probabilities(ciphertext)
+
+    # Compute variational distance with languages
+    cipher_results = {}
+    for lang, Q in langs.items():
+        cipher_results[lang] = var_dist(cipher_P, Q)
+
+    # Sort results by variational distance (ascending)
+    cipher_results = {
+        k: v for k, v in sorted(cipher_results.items(), key=lambda x: x[1], reverse=False)
+    }
+
+    # Print results
+    print("Listing variational distance from cipher letter distibution for each language")
+    for k, v in cipher_results.items():
+        print(k, v, sep="\t")
+
+    # --- PROBLEM 4e ---
+    print("---Problem 4e---")
+    cipher_collisionprob = col_prob(cipher_P)
+
+    print("Collision probability for ciphertext")
+    print("Cipher", cipher_collisionprob, sep="\t")
