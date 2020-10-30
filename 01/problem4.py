@@ -70,4 +70,4 @@ if __name__ == "__main__":
 
     # Print results
     for k, v in results.items():
-        print(k, v, sep="\t")
+        print(f"{k}\t{v: .4f}")
