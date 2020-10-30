@@ -40,11 +40,13 @@ def var_dist(P, Q, X=alph):
 
     return dist
 
+
 def col_prob(P, X=alph):
     """Compute the collision probability of a distribution P for alphabet X
     """
 
     return sum([P[x] ** 2 for x in X])
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
