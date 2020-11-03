@@ -91,7 +91,7 @@ if __name__ == "__main__":
     }
     print("Listing Collision probabilities for each language")
     for k, v in col_probs.items():
-        print(k, v, sep="\t")
+        print(k, f"{v: .4f}", sep="\t")
 
     # --- PROBLEM 4d ---
     print("---Problem 4d---")
@@ -115,7 +115,7 @@ if __name__ == "__main__":
     # Print results
     print("Listing variational distance from cipher letter distibution for each language")
     for k, v in cipher_results.items():
-        print(k, v, sep="\t")
+        print(k, f"{v:.4f}", sep="\t")
 
     # --- PROBLEM 4e ---
     print("---Problem 4e---")
