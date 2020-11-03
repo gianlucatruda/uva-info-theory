@@ -123,3 +123,14 @@ if __name__ == "__main__":
 
     print("Collision probability for ciphertext")
     print("Cipher", cipher_collisionprob, sep="\t")
+    print("Listing absolute difference between collision probabilities.")
+
+    colprob_difference = {}
+    for lang, C in col_probs.items():
+        colprob_difference[lang] = abs(cipher_collisionprob - C)
+
+    colprob_difference = {
+        k: v for k, v in sorted(colprob_difference.items(), key=lambda x: x[1], reverse=False)
+    }
+    for k, v in colprob_difference.items():
+        print(k, v, sep="\t")
