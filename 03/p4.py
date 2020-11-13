@@ -53,9 +53,12 @@ def verify_compression(text):
     assert text == decoded
     return lc
 
+
 def calc_source_entropy(bitstring):
+    """Calculate single-character entropy of a binary string.
+    """
     l = len(bitstring)
-    probs = {c: bitstring.count(c)/l for c in ['0', '1']}
+    probs = {c: bitstring.count(c) / l for c in ["0", "1"]}
     assert 1.0 - sum(probs.values()) < 1e-15
     return -1 * sum(probs[c] * math.log2(probs[c]) for c in probs.keys())
 
@@ -74,4 +77,3 @@ if __name__ == "__main__":
     lc = verify_compression(text)
     print(f"Source entropy: {calc_source_entropy(text): .3f}")
     print(f"l_C: {lc}\tl_C/N: {lc/len(text):.3f}\tCR: {len(text)/lc: .3f}")
-
