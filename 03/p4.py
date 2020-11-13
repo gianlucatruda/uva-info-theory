@@ -56,11 +56,16 @@ def verify_compression(text):
 
 if __name__ == "__main__":
     # Generate and verify performance on random texts.
+    print("Running tests...")
     for i in range(10):
-        text = generate_random()
-        print(f"l_C: {verify_compression(text)}")
+        text = generate_random(length=10000)
+        lc = verify_compression(text)
+        print(f"l_C: {lc}\tl_C/N: {lc/len(text):.3f}\tCR: {len(text)/lc: .3f}")
     # Check specified text
     with open("random01.txt") as file:
         text = file.read()
     lc = verify_compression(text)
-    print(f"\nrandom01.txt: {lc}")
+    print(f"\nrandom01.txt:")
+    lc = verify_compression(text)
+    print(f"l_C: {lc}\tl_C/N: {lc/len(text):.3f}\tCR: {len(text)/lc: .3f}")
+
