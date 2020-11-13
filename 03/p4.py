@@ -45,20 +45,22 @@ def generate_random(length=10000, p=0.01):
 
 
 def verify_compression(text):
+    """Check that decoding reproduces `text`. Return encoded length.
+    """
     encoding = compress(text)
     lc = len(encoding)
     decoded = uncompress(encoding, encode_len=len(text))
     assert text == decoded
-    return lc / len(text)
+    return lc
 
 
 if __name__ == "__main__":
     # Generate and verify performance on random texts.
     for i in range(10):
         text = generate_random()
-        print(verify_compression(text))
+        print(f"l_C: {verify_compression(text)}")
     # Check specified text
     with open("random01.txt") as file:
         text = file.read()
-    cr = verify_compression(text)
-    print(f"\nrandom01.txt: {cr}")
+    lc = verify_compression(text)
+    print(f"\nrandom01.txt: {lc}")
