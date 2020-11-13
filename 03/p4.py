@@ -1,4 +1,5 @@
 import math
+import random
 
 
 def compress(bitstring):
@@ -29,3 +30,35 @@ def uncompress(encoding, encode_len=10000):
     for p in range(encode_len):
         bitstring += "1" if p in positions else "0"
     return bitstring
+
+
+def generate_random(length=10000, p=0.01):
+    """Generate random binary sequence of length `length` with P(1) = `p`.
+    """
+    randstring = ""
+    for i in range(length):
+        if random.uniform(0, 1) <= p:
+            randstring += "1"
+        else:
+            randstring += "0"
+    return randstring
+
+
+def verify_compression(text):
+    encoding = compress(text)
+    lc = len(encoding)
+    decoded = uncompress(encoding, encode_len=len(text))
+    assert text == decoded
+    return lc / len(text)
+
+
+if __name__ == "__main__":
+    # Generate and verify performance on random texts.
+    for i in range(10):
+        text = generate_random()
+        print(verify_compression(text))
+    # Check specified text
+    with open("random01.txt") as file:
+        text = file.read()
+    cr = verify_compression(text)
+    print(f"\nrandom01.txt: {cr}")
