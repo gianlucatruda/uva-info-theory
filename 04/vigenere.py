@@ -1,6 +1,7 @@
 import math
 import string
 from copy import deepcopy
+from itertools import product
 
 alph = string.ascii_uppercase
 mapping = {c: i + 1 for i, c in enumerate(alph)}
@@ -90,9 +91,7 @@ if __name__ == "__main__":
     print("Key length:", k)
     # We already know some likely words from M
     likelies = ["CLEOPATRA", "CAESAR", "QUEEN", "GRACE", "ALEXANDRIA"]
-    from itertools import product
 
-    alph = string.ascii_uppercase
     possible_keys = []
     for word in likelies:
         for K in product(alph, repeat=k):
